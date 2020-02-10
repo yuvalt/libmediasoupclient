@@ -3,6 +3,7 @@
 #include "mediasoupclient.hpp"
 #include "Logger.hpp"
 #include "version.hpp"
+#include "AudioDeviceManager.hpp"
 #include <rtc_base/helpers.h>
 #include <rtc_base/ssl_adapter.h>
 #include <rtc_base/time_utils.h>
@@ -18,6 +19,7 @@ namespace mediasoupclient
 
 		rtc::InitializeSSL();
 		rtc::InitRandom(rtc::Time());
+		(void) AudioDeviceManager::getInstance();
 	}
 
 	void Cleanup() // NOLINT(readability-identifier-naming)

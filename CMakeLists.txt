@@ -60,6 +60,7 @@ set(HEADER_FILES
 
 set(
 	SOURCE_FILES
+	src/AudioDeviceManager.cpp
 	src/Consumer.cpp
 	src/Device.cpp
 	src/Handler.cpp
@@ -73,6 +74,7 @@ set(
 	src/sdp/MediaSection.cpp
 	src/sdp/RemoteSdp.cpp
 	src/sdp/Utils.cpp
+	include/Consumer.hpp
 	include/Consumer.hpp
 	include/Device.hpp
 	include/Handler.hpp

@@ -10,6 +10,7 @@
 #include <api/video_codecs/builtin_video_decoder_factory.h>
 #include <api/video_codecs/builtin_video_encoder_factory.h>
 #include <rtc_base/ssl_adapter.h>
+#include "AudioDeviceManager.hpp"
 
 using json = nlohmann::json;
 
@@ -92,7 +93,7 @@ namespace mediasoupclient
 			  this->workerThread.get(),
 			  this->workerThread.get(),
 			  this->signalingThread.get(),
-			  nullptr /*default_adm*/,
+			  AudioDeviceManager::getInstance()->audioDeviceModule,
 			  webrtc::CreateBuiltinAudioEncoderFactory(),
 			  webrtc::CreateBuiltinAudioDecoderFactory(),
 			  webrtc::CreateBuiltinVideoEncoderFactory(),
