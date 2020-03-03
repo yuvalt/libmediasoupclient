@@ -69,6 +69,7 @@ set(
 	src/Transport.cpp
 	src/mediasoupclient.cpp
 	src/ortc.cpp
+	src/mac.mm
 	src/scalabilityMode.cpp
 	src/sdp/MediaSection.cpp
 	src/sdp/RemoteSdp.cpp
@@ -123,12 +124,17 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/include
 target_include_directories(${PROJECT_NAME} PUBLIC
 	"${PROJECT_SOURCE_DIR}/deps/libsdptransform/include"
 	"${LIBWEBRTC_INCLUDE_PATH}"
+	"${LIBWEBRTC_INCLUDE_PATH}/sdk/objc"
+	"${LIBWEBRTC_INCLUDE_PATH}/sdk/objc/base"
 	"${LIBWEBRTC_INCLUDE_PATH}/third_party/abseil-cpp"
 )
 
 # Public (interface) dependencies.
 target_link_libraries(${PROJECT_NAME} PUBLIC
 	sdptransform
+	"-F ${LIBWEBRTC_BINARY_PATH}/.. -framework WebRTC"
+	${LIBWEBRTC_BINARY_PATH}/sdk/libnative_video${CMAKE_STATIC_LIBRARY_SUFFIX}
+	${LIBWEBRTC_BINARY_PATH}/sdk/libwrapped_native_codec_objc${CMAKE_STATIC_LIBRARY_SUFFIX}
 	${LIBWEBRTC_BINARY_PATH}/libwebrtc${CMAKE_STATIC_LIBRARY_SUFFIX}
 )
 

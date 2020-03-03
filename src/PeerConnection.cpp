@@ -13,6 +13,9 @@
 
 using json = nlohmann::json;
 
+extern std::unique_ptr<webrtc::VideoEncoderFactory> CreateHardwareEncoderFactory();
+extern std::unique_ptr<webrtc::VideoDecoderFactory> CreateHardwareDecoderFactory();
+
 namespace mediasoupclient
 {
 	/* Static. */
@@ -95,8 +98,8 @@ namespace mediasoupclient
 			  nullptr /*default_adm*/,
 			  webrtc::CreateBuiltinAudioEncoderFactory(),
 			  webrtc::CreateBuiltinAudioDecoderFactory(),
-			  webrtc::CreateBuiltinVideoEncoderFactory(),
-			  webrtc::CreateBuiltinVideoDecoderFactory(),
+			  CreateHardwareEncoderFactory(),
+			  CreateHardwareDecoderFactory(),
 			  nullptr /*audio_mixer*/,
 			  nullptr /*audio_processing*/);
 		}
